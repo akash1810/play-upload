@@ -1,0 +1,14 @@
+@import helper._
+@()(implicit request: RequestHeader)
+
+@main("Choose file to upload") {
+
+    @helper.form(action = routes.Application.uploadFile, 'enctype -> "multipart/form-data") {
+        @CSRF.formField
+
+        <input id="fileChooser" type="file" name="files" required>
+
+        <button type="submit">Upload</button>
+    }
+
+}
