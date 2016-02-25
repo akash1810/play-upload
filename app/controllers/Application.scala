@@ -18,7 +18,7 @@ object Application extends Controller {
   def uploadFile = Action (parse.maxLength(parse.DefaultMaxDiskLength, parse.multipartFormData)) { request => {
       request.body match {
         case Left(MaxSizeExceeded(limit)) => {
-          EntityTooLarge(s"file too large, limit is $limit")
+          EntityTooLarge(views.html.tooLarge()(request))
         }
         case Right(multipartForm) => {
           multipartForm.file("files").map { f =>
